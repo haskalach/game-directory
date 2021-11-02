@@ -1,0 +1,11 @@
+<div class="row">
+	<div
+		[ngClass]="customCssClass ? customCssClass : 'col-6 col-sm-4'"
+		*ngFor="let data of gamesData"
+	>
+		<app-single-game-data
+			[showGoToPageBtn]="true"
+			[data]="data"
+		></app-single-game-data>
+	</div>
+</div>

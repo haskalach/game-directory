@@ -1,0 +1,45 @@
+<div class="d-flex" id="wrapper">
+	<!-- Sidebar -->
+	<div
+		class="bg-light border-right"
+		id="sidebar-wrapper"
+		[ngClass]="status ? 'hide' : 'show'"
+	>
+		<div class="sidebar-heading">Rivertech Casino</div>
+		<div class="list-group list-group-flush">
+			<a
+				[routerLink]="'/'"
+				class="list-group-item list-group-item-action bg-light"
+				>Home</a
+			>
+			<a
+				[routerLink]="'/games'"
+				class="list-group-item list-group-item-action bg-light"
+				>Games</a
+			>
+		</div>
+	</div>
+	<!-- /#sidebar-wrapper -->
+	<!-- Page Content -->
+	<div id="page-content-wrapper">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<span class="btn btn-primary" (click)="clickEvent()">Menu</span>
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<router-outlet></router-outlet>
+		</div>
+		<div class="container-fluid" *ngIf="LatestViewedGames.length > 0">
+			<div class="footer">
+				<h3>Last Played</h3>
+				<app-games-data
+					[gamesData]="LatestViewedGames"
+					[customCssClass]="'col-4 col-sm-2'"
+				></app-games-data>
+			</div>
+		</div>
+	</div>
+	<!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->

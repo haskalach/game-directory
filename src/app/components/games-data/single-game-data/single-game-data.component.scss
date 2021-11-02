@@ -1,0 +1,15 @@
+.card {
+	margin-bottom: 10px;
+	height: calc(100% - 10px);
+	.card-img-top {
+		max-width: 280px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.card-body {
+		display: flex;
+		flex-direction: column;
+		margin-top: auto;
+		flex: 0;
+	}
+}

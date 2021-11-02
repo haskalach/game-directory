@@ -1,0 +1,17 @@
+:host ::ng-deep app-single-game-data {
+	.card {
+		border: none;
+		padding-top: 10px;
+		.card-img-top {
+			max-width: 500px;
+			height: auto;
+		}
+		.card-body {
+			align-items: center;
+			justify-content: center;
+			a {
+				margin-left: 10px;
+			}
+		}
+	}
+}

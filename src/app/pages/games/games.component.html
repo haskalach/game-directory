@@ -1,0 +1,33 @@
+<h3>All Games</h3>
+<!-- filters section -->
+<form [formGroup]="searchFilters" class="filters-section">
+	<mat-form-field class="example-full-width" appearance="fill">
+		<mat-label>Search</mat-label>
+		<input matInput placeholder="Game Name" formControlName="search" />
+	</mat-form-field>
+	<mat-form-field appearance="fill">
+		<mat-label>Providers</mat-label>
+		<mat-select formControlName="providersData" multiple>
+			<mat-select-trigger>
+				{{
+					searchFilters.get("providersData")?.value
+						? searchFilters.get("providersData")?.value[0]
+						: ""
+				}}
+				<span *ngIf="searchFilters.get('providersData')?.value?.length > 1">
+					(+{{ searchFilters.get("providersData")?.value.length - 1 }}
+					{{
+						searchFilters.get("providersData")?.value?.length === 2
+							? "other"
+							: "others"
+					}})
+				</span>
+			</mat-select-trigger>
+			<mat-option *ngFor="let provider of providers" [value]="provider">{{
+				provider
+			}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+</form>
+<!-- /#filters section -->
+<app-games-data [gamesData]="gamesData"></app-games-data>

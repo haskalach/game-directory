@@ -1,0 +1,24 @@
+<div class="card" *ngIf="data">
+	<img
+		[src]="data.thumb?.url"
+		onerror="this.src='assets/images/placeholder.jpg';"
+		class="card-img-top"
+		alt="..."
+	/>
+	<div class="card-body">
+		<h5>{{ data.title }}</h5>
+		<a
+			[href]="data.startUrl"
+			*ngIf="showPlayBtn"
+			target="blank"
+			class="btn btn-primary"
+			>Play Now !</a
+		>
+		<a
+			*ngIf="showGoToPageBtn"
+			[routerLink]="'/game/' + data.id"
+			class="btn btn-primary"
+			>Go To game Page</a
+		>
+	</div>
+</div>

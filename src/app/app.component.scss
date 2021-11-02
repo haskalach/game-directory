@@ -1,0 +1,47 @@
+@import "@app/mixins";
+@import "@app/colors";
+
+#sidebar-wrapper {
+	min-height: 100vh;
+	margin-left: -15rem;
+	-webkit-transition: margin 0.25s ease-out;
+	-moz-transition: margin 0.25s ease-out;
+	-o-transition: margin 0.25s ease-out;
+	transition: margin 0.25s ease-out;
+	box-shadow: -4px 0px 20px 0px;
+	z-index: 1;
+	.sidebar-heading {
+		padding: 0.875rem 1.25rem;
+		font-size: 1.2rem;
+		border-bottom: 1px solid $black;
+	}
+	.list-group {
+		width: 15rem;
+	}
+}
+
+#page-content-wrapper {
+	min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+	margin-left: 0;
+}
+
+@include breakpoint("smallM") {
+	#sidebar-wrapper {
+		margin-left: 0;
+	}
+
+	#page-content-wrapper {
+		min-width: 0;
+		width: 100%;
+	}
+	.show {
+		margin-left: 0 !important;
+	}
+	.hide {
+		margin-left: -15rem !important;
+		box-shadow: none !important;
+	}
+}
