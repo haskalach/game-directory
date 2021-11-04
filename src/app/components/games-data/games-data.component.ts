@@ -3,13 +3,10 @@ import { Game } from "src/app/shared/client/game.model";
 
 @Component({
 	selector: "app-games-data",
-	templateUrl: "./games-data.component.html",
-	styleUrls: ["./games-data.component.scss"],
+	templateUrl: "./games-data.component.html"
 })
-export class GamesDataComponent implements OnInit {
+export class GamesDataComponent {
 	@Input() gamesData: Game[] = [];
-	@Input() customCssClass: string = "";
-	constructor() {}
+	@Input() customCssClass = "";
 
-	ngOnInit(): void {}
 }

@@ -7,11 +7,12 @@ import { Game } from "./game.model";
 	providedIn: "root",
 })
 export class GameMockClient {
-	private readonly dataURL = "assets/game.mock-data.json";
+
 	dataSubject = new BehaviorSubject<Game[]>([]);
 	latestViewedGamesSubject = new BehaviorSubject<string[]>([]);
 	dataRetrived = false;
-	constructor(private http: HttpClient) {}
+	private readonly dataURL = "assets/game.mock-data.json";
+	constructor(private http: HttpClient) { }
 
 	getAll$(): Observable<Game[]> {
 		return this.http.get<Game[]>(this.dataURL);

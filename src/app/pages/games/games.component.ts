@@ -12,7 +12,7 @@ import { GameMockClient } from "src/app/shared/client/game-mock.client";
 })
 export class GamesComponent implements OnInit {
 	gamesData: Game[] = [];
-	OriginalGamesData: Game[] = [];
+	originalGamesData: Game[] = [];
 	tags: string[] = [];
 	providers: string[] = [];
 	searchFilters: FormGroup = new FormGroup({
@@ -31,8 +31,8 @@ export class GamesComponent implements OnInit {
 		gameMockClient.getData();
 		gameMockClient.dataSubject.subscribe((next: Game[]) => {
 			this.gamesData = [...next];
-			this.OriginalGamesData = [...next];
-			this.providers = [...new Set(next.map((item) => item.providerName))];
+			this.originalGamesData = [...next];
+			this.providers = [...new Set(next.map(item => item.providerName))];
 			if (next.length > 0) {
 				this.applyFilterChangesToData();
 			}
@@ -40,19 +40,19 @@ export class GamesComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.activatedRoute.queryParams.subscribe((params) => {
-			const searchTerm = params["searchTerm"] ? params["searchTerm"] : "";
-			const provider = params["provider"] ? params["provider"] : "";
+		this.activatedRoute.queryParams.subscribe(params => {
+			const searchTerm = params.searchTerm ? params.searchTerm : "";
+			const provider = params.provider ? params.provider : "";
 			const data = {
 				search: searchTerm,
-				providersData: provider ? params["provider"].split(",") : [],
+				providersData: provider ? params.provider.split(",") : [],
 			};
 			this.queryParams = {
-				searchTerm: searchTerm,
-				provider: provider,
+				searchTerm,
+				provider,
 			};
 			this.searchFilters.patchValue(data);
-			if (this.OriginalGamesData.length > 0) {
+			if (this.originalGamesData.length > 0) {
 				this.applyFilterChangesToData();
 			}
 		});
@@ -84,10 +84,10 @@ export class GamesComponent implements OnInit {
 		});
 	}
 	applyFilterChangesToData() {
-		let gamesData: Game[] = [...this.OriginalGamesData];
-		for (let key in this.queryParams) {
+		let gamesData: Game[] = [...this.originalGamesData];
+		for (const key in this.queryParams) {
 			if (key === "provider") {
-				gamesData = gamesData.filter((game) => {
+				gamesData = gamesData.filter(game => {
 					if (this.queryParams[key].length === 0) {
 						return true;
 					} else {
@@ -95,7 +95,7 @@ export class GamesComponent implements OnInit {
 					}
 				});
 			} else {
-				gamesData = gamesData.filter((game) => {
+				gamesData = gamesData.filter(game => {
 					if (!this.queryParams[key]) {
 						return true;
 					} else {

@@ -6,12 +6,9 @@ import { Game } from "src/app/shared";
 	templateUrl: "./single-game-data.component.html",
 	styleUrls: ["./single-game-data.component.scss"],
 })
-export class SingleGameDataComponent implements OnInit {
+export class SingleGameDataComponent {
 	@Input() data: Game = new Game();
-	@Input() showPlayBtn: boolean = false;
-	@Input() showGoToPageBtn: boolean = false;
+	@Input() showPlayBtn = false;
+	@Input() showGoToPageBtn = false;
 
-	constructor() {}
-
-	ngOnInit(): void {}
 }

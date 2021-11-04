@@ -30,11 +30,11 @@
 		<div class="container-fluid">
 			<router-outlet></router-outlet>
 		</div>
-		<div class="container-fluid" *ngIf="LatestViewedGames.length > 0">
+		<div class="container-fluid" *ngIf="latestViewedGames.length > 0">
 			<div class="footer">
 				<h3>Last Played</h3>
 				<app-games-data
-					[gamesData]="LatestViewedGames"
+					[gamesData]="latestViewedGames"
 					[customCssClass]="'col-4 col-sm-2'"
 				></app-games-data>
 			</div>

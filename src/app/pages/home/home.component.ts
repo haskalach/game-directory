@@ -4,7 +4,6 @@ import { Game, Tags } from "src/app/shared/client/game.model";
 
 @Component({
 	templateUrl: "./home.component.html",
-	styleUrls: ["./home.scss"],
 	selector: "app-home",
 })
 export class HomeComponent {
@@ -13,7 +12,7 @@ export class HomeComponent {
 	constructor(gameMockClient: GameMockClient) {
 		gameMockClient.getData();
 		gameMockClient.dataSubject.subscribe((next: Game[]) => {
-			this.gamesData = [...next.filter((x) => x.tag === Tags.trending)];
+			this.gamesData = [...next.filter(x => x.tag === Tags.trending)];
 		});
 	}
 }

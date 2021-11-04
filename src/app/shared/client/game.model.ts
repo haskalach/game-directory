@@ -12,7 +12,6 @@ export interface Thumb {
 	title: string;
 }
 export class Game implements Game {
-	constructor() {}
 }
 export enum Tags {
 	trending = "trending",

@@ -10,13 +10,13 @@ import { Game } from "src/app/shared/client/game.model";
 })
 export class GameComponent implements OnInit {
 	gameData: Game = new Game();
-	gameId: string = "";
+	gameId = "";
 	constructor(
 		public gameMockClient: GameMockClient,
 		private route: ActivatedRoute
 	) {
-		this.route.params.subscribe((params) => {
-			this.gameId = params["id"];
+		this.route.params.subscribe(params => {
+			this.gameId = params.id;
 		});
 	}
 
@@ -24,7 +24,7 @@ export class GameComponent implements OnInit {
 		this.gameMockClient.getData();
 		this.gameMockClient.addToLatestViewedGames(this.gameId);
 		this.gameMockClient.dataSubject.subscribe((next: Game[]) => {
-			this.gameData = next.find((game) => game.id == this.gameId) || new Game();
+			this.gameData = next.find(game => game.id === this.gameId) || new Game();
 		});
 	}
 }

@@ -8,9 +8,9 @@ import { Game } from "./shared/client/game.model";
 	styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-	status: boolean = false;
+	status = false;
 	gamesData: Game[] = [];
-	LatestViewedGames: Game[] = [];
+	latestViewedGames: Game[] = [];
 	latestGamesIds: string[] = [];
 	constructor(gameMockClient: GameMockClient, public ck: ChangeDetectorRef) {
 		gameMockClient.getLatestViewedGames();
@@ -18,7 +18,7 @@ export class AppComponent {
 			this.gamesData = next;
 			this.getLatestGames();
 		});
-		gameMockClient.latestViewedGamesSubject.subscribe((next) => {
+		gameMockClient.latestViewedGamesSubject.subscribe(next => {
 			this.latestGamesIds = next;
 			this.getLatestGames();
 		});
@@ -28,19 +28,17 @@ export class AppComponent {
 	}
 	getLatestGames() {
 		if (this.latestGamesIds.length > 0 && this.gamesData.length > 0) {
-			this.LatestViewedGames = this.gamesData.filter((x: Game) => {
-				return (
+			this.latestViewedGames = this.gamesData.filter(
+				(x: Game) =>
 					this.latestGamesIds.findIndex(
-						(id) => id.toLocaleLowerCase() === x.id.toLocaleLowerCase()
+						id => id.toLocaleLowerCase() === x.id.toLocaleLowerCase()
 					) > -1
-				);
-			});
+			);
 
-			this.LatestViewedGames.sort((a, b) => {
-				return (
+			this.latestViewedGames.sort(
+				(a, b) =>
 					this.latestGamesIds.indexOf(a.id) - this.latestGamesIds.indexOf(b.id)
-				);
-			});
+			);
 			this.ck.detectChanges();
 		}
 	}
